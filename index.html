@@ -1,0 +1,314 @@
+<body data-new-gr-c-s-check-loaded="14.1111.0" data-gr-ext-installed="" data-hasqtip="0" aria-describedby="iknow-qtip-0"><font face="Courier New">
+    <table border="1" cellpadding="1" cellspacing="1" width="85%" ,="">
+    
+    <tbody><tr>
+    <td colspan="2">
+    <p align="center"><strong>Programmer's Reference to HLA Assembly Language</strong></p></td></tr>
+    <tr>
+    <td>
+    <table border="1" cellpadding="1" cellspacing="1" width="100%">
+    <tbody>
+    <tr>
+    <td>
+    <p align="center"><strong><em>Typical Program Structure</em></strong></p></td></tr>
+    <tr>
+    <td>
+    <p><font face="Courier New">&nbsp;&nbsp;&nbsp; program <font color="crimson">progID</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></font><font face="Courier 
+    
+    
+    
+    New">&nbsp;&nbsp;&nbsp; #include( "stdlib.hhf" );<br>&nbsp;&nbsp;&nbsp; static<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="forestgreen">variable declarations</font><br>&nbsp;&nbsp;&nbsp; begin <font color="crimson">progID</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="blue">statements</font><br>&nbsp;&nbsp;&nbsp; end <font color="crimson">progID</font>;</font> </p></td></tr>
+    <tr>
+    <td>
+    <p align="center"><strong><em>Assembly Language Instructions</em></strong></p></td></tr>
+    <tr>
+    <td>
+    <table border="1" cellpadding="1" cellspacing="1" width="100%">
+    
+    <tbody><tr>
+    <td><em>Instruction</em></td>
+    <td width="40%"><em>Syntax</em></td>
+    <td><em>Description</em></td></tr>
+    <tr>
+    <td>MOV</td>
+    <td><font face="Courier New">mov( source, dest );</font></td>
+    <td>dest = source;</td></tr>
+    <tr>
+    <td>ADD</td>
+    <td><font face="Courier New">add( source, dest );</font></td>
+    <td>dest += source;</td></tr>
+    <tr>
+    <td>SUB</td>
+    <td><font face="Courier New">sub( source, dest );</font></td>
+    <td>dest -= source;</td></tr>
+    <tr>
+    <td>SHL</td>
+    <td><font face="Courier New">shl( count, dest );</font></td>
+    <td>shuffles left a total of count bits in dest operand; sets carry when count=1</td></tr>
+    <tr>
+    <td>SHR</td>
+    <td><font face="Courier New">shr( count, dest );</font></td>
+    <td>shuffles right a total of count bits in dest operand; sets carry when count=1</td></tr>
+    <tr>
+    <td>SAR</td>
+    <td><font face="Courier New">sar( count, dest );</font></td>
+    <td>shuffles right a total of count bits in dest operand; sets carry when count=1; leaves H.O. bit unchanged</td></tr>
+    <tr>
+    <td>ROL</td>
+    <td><font face="Courier New">rol( count, dest );</font></td>
+    <td>rotates left a total of count bits in dest operand; sets carry when count=1</td></tr>
+    <tr>
+    <td>ROR</td>
+    <td><font face="Courier New">ror( count, dest );</font></td>
+    <td>rotates right a total of count bits in dest operand; sets carry when count=1</td></tr>
+    <tr>
+    <td>NOT</td>
+    <td><font face="Courier New">not(&nbsp;dest );</font></td>
+    <td>inverts the bits of the dest operand</td></tr>
+    <tr>
+    <td>AND</td>
+    <td><font face="Courier New">and( source, dest );</font></td>
+    <td>bitwise logical AND; result placed in dest operand</td></tr>
+    <tr>
+    <td>OR</td>
+    <td><font face="Courier New">or( source, dest );</font></td>
+    <td>bitwise inclusive OR; result placed in dest operand</td></tr>
+    <tr>
+    <td>XOR</td>
+    <td><font face="Courier New">xor( source, dest );</font></td>
+    <td>bitwise exclusive OR; result placed in dest operand</td></tr>
+    <tr>
+    <td>LAHF</td>
+    <td><font face="Courier New">lahf( );</font></td>
+    <td>pushes the lower 8 bits of EFLAGS register into AH</td></tr>
+    <tr>
+    <td>INC</td>
+    <td><font face="Courier New">inc( operand );</font></td>
+    <td>operand = operand + 1;</td></tr>
+    <tr>
+    <td>DEC</td>
+    <td><font face="Courier New">dec( operand );</font></td>
+    <td>operand = operand - 1;</td></tr>
+    <tr>
+    <td>CMP</td>
+    <td><font face="Courier New">cmp( lhs, rhs );</font></td>
+    <td>sets EFLAGS as if lhs-rhs was performed; does not change the value of either operand</td></tr>
+    <tr>
+    <td>TEST</td>
+    <td><font face="Courier New">test( operand1, operand2 );</font></td>
+    <td>sets EFLAGS as if AND( operand1, operand2 ) was performed; does not change the value of either operand</td></tr>
+    <tr>
+    <td>NEG 
+    </td>
+    <td><font face="Courier New">neg( dest );</font></td>
+    <td>dest = - dest;</td></tr>
+    <tr>
+    <td>PUSH
+    </td>
+    <td><font face="Courier New">push( operand );</font></td>
+    <td>places a copy of operand onto the top of the stack, incrementing the stack pointer register ESP; only 16-bit and 32-bit operands are allowed</td></tr>
+    <tr>
+    <td>POP
+    </td>
+    <td><font face="Courier New">pop( dest );</font></td>
+    <td>overwrites the dest operand with the value on the top of the stack, decrementing the stack pointer register ESP; only 16-bit and 32-bit register or memory operands are allowed</td></tr>
+    <tr>
+    <td>MUL/IMUL
+    </td>
+    <td><font face="Courier New">mul( operand );</font></td>
+    <td>when 8-bit operand, AL = AX * operand; when 16-bit operand, EAX = AL * operand; when 32-bit operand, EDX:EAX = EAX * operand; no constant operands are allowed<br><span style="color:red;">result is always stored in LA/AX/EAX</span></td></tr>
+    <tr>
+    <td>DIV/IDIV
+    </td>
+    <td><font face="Courier New">div( operand );</font></td>
+    <td>when 8-bit operand, AL = AX / operand and remainder in AH; when 16-bit operand, AX = DX:AX / operand and remainder in DX; when 32-bit operand, EAX = EDX:EAX / operand and remainder in EDX; no constant operands are allowed</td></tr>
+    <tr>
+    <td>MOD/IMOD
+    </td>
+    <td><font face="Courier New">mod( operand );</font></td>
+    <td>when 8-bit operand, remainder in AH; when 16-bit operand, remainder in DX; when 32-bit operand,  remainder in EDX; no constant operands are allowed</td></tr>
+    <tr>
+    <td>JMP</td>
+    <td>
+    <p><font face="Courier New">jmp label;<br>jmp( 32bit_register);<br>jmp( dword );</font></p></td>
+    <td>unconditional transfer of control.&nbsp; Note the inconsistent use of parentheses.</td></tr>
+    <tr>
+    <td>SETcc</td>
+    <td><font face="Courier New">setcc(8bit_operand);</font></td>
+    <td>reads an EFLAG bit into a byte operand.&nbsp; Mnemonics listed below.</td></tr>
+    <tr>
+    <td>Jcc</td>
+    <td>
+    <p><font face="Courier New">jcc label;</font></p></td>
+    <td>transfers control to label when condition is met.&nbsp; Mnemonics listed below.</td></tr></tbody></table></td></tr>
+    <tr>
+    <td>
+    <p align="center"><strong><em>Mnemonics For SETcc and Jcc Instructions</em></strong></p></td></tr>
+    <tr>
+    <td>
+    <table border="1" cellpadding="1" cellspacing="1" width="100%" ,="">
+    
+    <tbody><tr>
+    <td><em>Abbreviation</em></td>
+    <td><em>Meaning</em></td>
+    <td><em>Example</em></td></tr>
+    <tr>
+    <td>C</td>
+    <td>Set if Carry = 1</td>
+    <td>SETC</td></tr>
+    <tr>
+    <td>NC</td>
+    <td>Set if Carry = 0</td>
+    <td>SETNC</td></tr>
+    <tr>
+    <td>Z</td>
+    <td>Set if Zero = 1</td>
+    <td>SETZ</td></tr>
+    <tr>
+    <td>NZ</td>
+    <td>Set if&nbsp;Zero = 0</td>
+    <td>SETNZ</td></tr>
+    <tr>
+    <td>S</td>
+    <td>Set if&nbsp;Sign = 1</td>
+    <td>SETS</td></tr>
+    <tr>
+    <td>NS</td>
+    <td>Set if&nbsp;Sign = 0</td>
+    <td>SETNS</td></tr>
+    <tr>
+    <td>O</td>
+    <td>Set if&nbsp;Overflow = 1</td>
+    <td>SETO</td></tr>
+    <tr>
+    <td>NO</td>
+    <td>Set if&nbsp;Overflow = 0</td>
+    <td>SETNO</td></tr>
+    <tr>
+    <td>E</td>
+    <td>Set if Equal</td>
+    <td>SETE</td></tr>
+    <tr>
+    <td>NE</td>
+    <td>Set if Not Equal</td>
+    <td>SETNE</td></tr>
+    <tr>
+    <td>NA</td>
+    <td>Set if not &gt;</td>
+    <td>SETNA</td></tr>
+    <tr>
+    <td>BE</td>
+    <td>Set if&nbsp;&lt;=</td>
+    <td>SETBE</td></tr>
+    <tr>
+    <td>NAE</td>
+    <td>Set if&nbsp;not &gt;=</td>
+    <td>SETNAE</td></tr>
+    <tr>
+    <td>B</td>
+    <td>Set if&nbsp;&lt;</td>
+    <td>SETB</td></tr>
+    <tr>
+    <td>NB</td>
+    <td>Set if&nbsp;not &lt;</td>
+    <td>SETNB</td></tr>
+    <tr>
+    <td>NBE</td>
+    <td>Set if not &lt;=</td>
+    <td>SETNBE</td></tr>
+    <tr>
+    <td>A</td>
+    <td>Set if &gt;</td>
+    <td>SETA</td></tr>
+    <tr>
+    <td>AE</td>
+    <td>Set if&nbsp;&gt;=</td>
+    <td>SETAE</td></tr>
+    <tr>
+    <td>G</td>
+    <td>Set if greater than</td>
+    <td>SETG</td></tr>
+    <tr>
+    <td>NLE</td>
+    <td>Set if not less than or equal</td>
+    <td>SETNLE</td></tr>
+    <tr>
+    <td>GE</td>
+    <td>Set if&nbsp;greater than or equal</td>
+    <td>SETGE</td></tr>
+    <tr>
+    <td>NL</td>
+    <td>Set if&nbsp;not less than</td>
+    <td>SETNE</td></tr>
+    <tr>
+    <td>L</td>
+    <td>Set if&nbsp;less than</td>
+    <td>SETL</td></tr>
+    <tr>
+    <td>NGE</td>
+    <td>Set if not greater than or equal</td>
+    <td>SETNGE</td></tr>
+    <tr>
+    <td>LE</td>
+    <td>Set if less than or equal</td>
+    <td>SETLE</td></tr>
+    <tr>
+    <td>NG</td>
+    <td>Set if&nbsp;not greater than</td>
+    <td>SETNG</td></tr></tbody></table></td></tr></tbody></table></td>
+    <td>
+    <table border="1" cellpadding="1" cellspacing="1" width="100%" ,="">
+    
+    <tbody><tr>
+    <td><strong><em>Available Datatypes</em></strong></td></tr>
+    <tr>
+    <td>
+    <p>int8<br>int16<br>int32<br><br>uns8<br>uns16<br>uns32<br>real32<br>real64<br>real80<br><br>boolean</p></td></tr>
+    <tr>
+    <td><strong><em>Available I/O Routines</em></strong></td></tr>
+    <tr>
+    <td>
+    <p>stdout.put<br>stdout.puti8<br>stdout.puti16<br>stdout.puti32<br>stdout.putb<br>stdout.putw<br>stdout.putd<br>stdout.putuns8<br>stdout.putuns16<br>stdout.putuns32<br>stdout.putr32<br>stdout.putr64<br>stdout.putr80<br>stdout.pute32<br>stdout.pute64<br>stdout.pute80<br>stdout.putc<br>stdout.putcSize<br>
+    <br>stdout.newln<br><br>stdin.get<br>stdin.geti8<br>stdin.geti16<br>stdin.geti32<br>
+    stdin.getuns8<br>stdin.getuns16<br>stdin.getuns32<br>stdin.getr32<br>stdin.getr64<br>stdin.getr80<br>stdin.getb<br>stdin.getw<br>stdin.getd<br>stdin.getc<br>stdin.flushBuffer</p></td></tr></tbody></table></td></tr></tbody></table></font><div id="speechify-global-notifications"></div><div id="speechify-summarization-fullscreen-mode" style="position: fixed; inset: 0px; overflow: auto; background: white; z-index: 1999; display: none;"></div><div id="speechify-screenshot-mode" style="position: fixed; top: 0px; right: 0px; width: 100%; min-height: 100%; z-index: 2147483640; display: none;"></div><div id="speechify-shortcuts-prompt"></div><div id="iknow-qtip-0" class="iknow-qtip iknow-qtip-default iknow-qtip-light iknow-qtip-shadow iknow-qtip-rounded iknow-qtip-fixed iknow-qtip-pos-bc iknow-qtip-focus" tracking="false" role="alert" aria-live="polite" aria-atomic="false" aria-describedby="iknow-qtip-0-content" aria-hidden="false" data-qtip-id="0" style="z-index: 2147483001; left: 423px; top: 669px; display: block;"><div class="iknow-qtip-tip" style="display: none;"><canvas></canvas></div><div class="iknow-qtip-content" id="iknow-qtip-0-content" aria-atomic="true"><section class="dictionary-tooltip-inner">
+      <div class="entries-list">
+        
+          
+            <article class="entry">
+              <div class="entry-column audio" data-lemma="operand">
+                <span class="play-sound"></span>
+              </div>
+    
+              <div class="entry-column definition">
+                <p>
+                  <span class="lemma">
+                    operand
+                  </span>
+    
+                  <span class="part-of-speech" data-type="noun">
+                    (名)
+                  </span>
+    
+                  <span class="definition-text">
+                    オペランド、被演算子
+                  </span>
+    
+                  
+                </p>
+              </div>
+    
+              <div class="entry-column feedback">
+                <span class="flag-entry" data-form="operand" data-lemma="operand" data-translation="オペランド、被演算子" data-part-of-speech="noun"></span>
+              </div>
+            </article>
+          
+        
+      </div>
+    </section>
+    
+    <section class="iknow-branding">
+      <a href="http://iknow.jp" target="_blank">
+        Powered by <span class="brand">iKnow!</span>
+      </a>
+    </section>
+    </div></div></body>
